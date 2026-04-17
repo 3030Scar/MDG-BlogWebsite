@@ -1,6 +1,6 @@
-# 🌟 **"Eighteen🌲" 个人博客系统** (Next.js + Strapi v5) ✨
+# 🌟 **"PaperGroup🌲" 个人博客系统** (Next.js + Strapi v5) ✨
 
-### 🎉 网站已全面开源啦！暂定名：BlogWebsite-Eighteen `(｡•̀ᴗ-)✧ 诶嘿~`
+### 🎉 网站已全面开源啦！暂定名：BlogWebsite-PaperGroup `(｡•̀ᴗ-)✧ 诶嘿~`
 
 ### 👉 原作者网站：[www.wuyilin18.top](https://www.wuyilin18.top/)  
 **如果喜欢本项目，欢迎点亮小星星哦~ 🌟🌟🌟 你的Star是作者更新的最大动力！**

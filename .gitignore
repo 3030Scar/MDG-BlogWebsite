@@ -1,0 +1,12 @@
+.edgeone/*
+.vscode/*
+.trae/*
+.ignore/*
+tmp.log
+tmp.txt
+.command.txt
+./blog-system2/frontend/.github
+./blog-system2/frontend/.edgeone
+./blog-system2/frontend/.next
+./blog-system2/frontend/node_modules
+./blog-system2/frontend/out
