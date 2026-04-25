@@ -7,7 +7,6 @@
 .ignore/
 tmp.log
 tmp.txt
-command.txt
 
 # 构建产物和依赖
 blog-system2/frontend/.next/

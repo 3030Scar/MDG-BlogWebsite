@@ -1,8 +1,0 @@
-在本地使用终端更新edge one部署
-cd d:\DockFiles\other_files\MDG_work\MDG_website_2\blog-system2\frontend
-npm run build
-edgeone pages deploy ./out -n mdg-blog
-
-使用edge one cli本地预览
-cd d:\DockFiles\other_files\MDG_work\MDG_website_2\blog-system2\frontend
-edgeone pages dev
