@@ -7,7 +7,6 @@ import {
   FiFileText,
   FiUser,
   FiMenu,
-  FiImage,
   FiBell,
   FiArchive,
 } from "react-icons/fi";
@@ -34,7 +33,6 @@ const navigation: NavigationItem[] = [
   { id: 3, icon: FiBell, label: "通知", href: "/notices" },
   { id: 4, icon: FiArchive, label: "资源", href: "/resources" },
   { id: 5, icon: FiUser, label: "关于", href: "/about" },
-  { id: 6, icon: FiImage, label: "图库", href: "/gallery" },
 ];
 
 export function Dock() {
@@ -72,7 +70,6 @@ export function Dock() {
     if (pathname.includes("/notices")) return 3;
     if (pathname.includes("/resources")) return 4;
     if (pathname.includes("/about")) return 5;
-    if (pathname.includes("/gallery")) return 6;
     return 0;
   };
 

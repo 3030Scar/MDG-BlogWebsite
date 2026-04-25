@@ -14,6 +14,9 @@ export interface PostsIndex {
   posts: StaticPost[];
 }
 
+type RawStaticPost = Omit<StaticPost, "id"> & { id?: number };
+type RawStaticNotice = Omit<StaticNotice, "id"> & { id?: number };
+
 export interface StrapiResponse {
   data: StaticPost[];
   meta?: {
@@ -29,7 +32,14 @@ export interface StrapiResponse {
 function getPostsIndex(): PostsIndex {
   const filePath = path.join(process.cwd(), 'public', 'data', 'posts', 'index.json');
   const raw = fs.readFileSync(filePath, 'utf-8');
-  return JSON.parse(raw) as PostsIndex;
+  const parsed = JSON.parse(raw) as { posts?: RawStaticPost[] };
+
+  return {
+    posts: (parsed.posts || []).map((post, index) => ({
+      ...post,
+      id: index + 1,
+    })),
+  };
 }
 
 export async function getPosts(params: {
@@ -140,7 +150,14 @@ export interface NoticesIndex {
 function getNoticesIndex(): NoticesIndex {
   const filePath = path.join(process.cwd(), 'public', 'data', 'notices', 'index.json');
   const raw = fs.readFileSync(filePath, 'utf-8');
-  return JSON.parse(raw) as NoticesIndex;
+  const parsed = JSON.parse(raw) as { notices?: RawStaticNotice[] };
+
+  return {
+    notices: (parsed.notices || []).map((notice, index) => ({
+      ...notice,
+      id: index + 1,
+    })),
+  };
 }
 
 /** 获取所有通知，置顶优先，然后按日期降序 */

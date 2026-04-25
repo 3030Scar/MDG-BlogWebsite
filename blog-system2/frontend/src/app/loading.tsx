@@ -1,7 +1,6 @@
 // app/loading.tsx
 "use client";
 import MetaBalls from "@/components/reactbits/MetaBalls";
-import { Ripple } from "@/components/magicui/ripple";
 export default function Loading() {
   return (
     <div
@@ -14,7 +13,6 @@ export default function Loading() {
         justifyContent: "center",
       }}
     >
-      <Ripple />
       {/* Meta Balls 动画 */}
       <MetaBalls
         color="#89f7feff"

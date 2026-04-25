@@ -12,7 +12,6 @@ import TargetCursor from "@/components/reactbits/TargetCursor";
 import NavigationProgress from "@/components/NavigationProgress";
 // 引入 Framer Motion
 import { AnimatePresence, motion } from "framer-motion";
-// import { Ripple } from "@/components/magicui/ripple";
 
 export default function ClientLayout({
   children,
@@ -54,7 +53,6 @@ export default function ClientLayout({
             {children}
           </motion.main>
         </AnimatePresence>
-        {/* <Ripple /> */}
         <Footer />
         <Analytics />
         <SpeedInsights />

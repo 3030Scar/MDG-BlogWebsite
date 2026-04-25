@@ -322,13 +322,14 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
       try {
         const postsRes = await fetch('/data/posts/index.json');
         const postsData = await postsRes.json();
-        const posts: Array<{id: number; slug: string; title: string; summary?: string; publishDate?: string; coverImage?: string}> = postsData.posts || [];
-        for (const post of posts) {
+        const posts: Array<{id?: number; slug: string; title: string; summary?: string; publishDate?: string; coverImage?: string}> = postsData.posts || [];
+        for (const [index, post] of posts.entries()) {
+          const resolvedId = index + 1;
           const titleMatch = post.title?.toLowerCase().includes(lowerQuery);
           const summaryMatch = post.summary?.toLowerCase().includes(lowerQuery);
           if (titleMatch || summaryMatch) {
             results.push({
-              objectID: `post-${post.id}`,
+              objectID: `post-${post.slug || resolvedId}`,
               title: titleMatch ? highlight(post.title, query) : post.title,
               summary: summaryMatch && post.summary ? highlight(post.summary, query) : (post.summary || ''),
               Slug: `/posts/${post.slug}`,
@@ -343,11 +344,12 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
       try {
         const noticesRes = await fetch('/data/notices/index.json');
         const noticesData = await noticesRes.json();
-        const notices: Array<{id: number; slug: string; title: string; publishDate?: string}> = noticesData.notices || [];
-        for (const notice of notices) {
+        const notices: Array<{id?: number; slug: string; title: string; publishDate?: string}> = noticesData.notices || [];
+        for (const [index, notice] of notices.entries()) {
+          const resolvedId = index + 1;
           if (notice.title?.toLowerCase().includes(lowerQuery)) {
             results.push({
-              objectID: `notice-${notice.id}`,
+              objectID: `notice-${notice.slug || resolvedId}`,
               title: highlight(notice.title, query),
               summary: notice.publishDate ? `发布日期: ${notice.publishDate}` : '',
               Slug: `/notices`,

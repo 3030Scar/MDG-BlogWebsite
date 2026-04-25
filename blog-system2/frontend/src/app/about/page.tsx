@@ -5,7 +5,6 @@ import Image from "next/image";
 
 import FallingText from "@/components/reactbits/FallingText";
 import DateScheduleCalendar from "@/components/about/DateScheduleCalendar";
-import "@/components/Comments/styles/twikoo-custom.css";
 
 export default function AboutPage() {
   const [animate, setAnimate] = useState(false);

@@ -1,654 +1,407 @@
-# 🌟 **"PaperGroup🌲" 个人博客系统** (Next.js + Strapi v5) ✨
+# 社团博客系统
 
-### 🎉 网站已全面开源啦！暂定名：BlogWebsite-PaperGroup `(｡•̀ᴗ-)✧ 诶嘿~`
+**探索人工智能前沿 · 复现经典论文 · 构建学术基础**
 
-### 👉 原作者网站：[www.wuyilin18.top](https://www.wuyilin18.top/)  
-**如果喜欢本项目，欢迎点亮小星星哦~ 🌟🌟🌟 你的Star是作者更新的最大动力！**
-
----
-
-## ⚠️ 重要提示 ⚠️
-
-### 🚧 新手须知  
-本开源项目**不太适合纯小白**，需要：  
-- 前端基础（Next.js必备）🧩  
-- 后端基础（Strapi次要）🔧  
-**强烈建议**提前学习：  
-[Next.js中文文档](https://www.nextjs.cn/docs) | [Strapi中文文档](https://www.strapi.cn/dev-docs/intro)  
-**别上来就问文章怎么写！！！** 避免踩坑哦~ (；´д｀)ゞ
-
-### 🛠️ 调试日志说明  
-**所有 `console.log` 都被注释掉啦~**  
-部署前请：  
-1. 在VsCode搜索 `console.log`  
-2. 删除所有注释符号 `//`  
-3. 本地调试OK再部署！  
-**(´▽`)ﾉ 温馨提示：前端后端都要检查哟~**
+基于 Next.js 15 构建的现代化静态博客系统，专为科普与演示设计。
 
 ---
 
-## 🎨 效果预览  
+## ✨ 特色
 
-![博客系统示例图](https://cdn.wuyilin18.top/img/%E6%95%88%E6%9E%9C%E5%9B%BE%E9%A2%84%E8%A7%88.webp)  
-*✨ 简约而不简单的设计风格~*
+- 🎨 **UI**：丰富的动画效果（Parallax、3D卡片、Orbit轨道等）
+- 🌓 **暗色模式**：完整的明暗主题切换功能
+- 🔍 **全文搜索**：集成 Algolia 搜索引擎
+- 📱 **响应式设计**：完美适配各种设备
+- ⚡ **纯静态站点**：无需后端服务器，部署简单快速
+- 🎯 **零依赖后端**：使用本地 JSON + Markdown 管理内容
 
 ---
 
-## 🚀 项目架构  
+## 🛠️ 技术栈
 
-**现代化全栈博客系统**：  
-- **前端**：Next.js (部署于Vercel) 🖥️  
-- **后端**：Strapi v5 (部署于云服务器) 📡  
-- **搜索**：Algolia 🔍  
-- **评论**：Twikoo (部署于Vercel) 💬  
+### 核心框架
 
-```mermaid
-graph LR
-A[用户] --> B[Next.js前端]
-B --> C[Strapi后端]
-C --> D[(PostgreSQL)]
-B --> E[Algolia]
-B --> F[Twikoo]
+- **[Next.js](https://nextjs.org/)** 15.2 (App Router)
+- **[React](https://react.dev/)** 19
+- **[TypeScript](https://www.typescriptlang.org/)** 5
+
+### 样式与UI
+
+- **[Tailwind CSS](https://tailwindcss.com/)** 4.x
+- **[Geist Font](https://vercel.com/font)** - 现代字体
+- **[Framer Motion](https://www.framer.com/motion/)** - 动画库
+- **[GSAP](https://gsap.com/)** - 高级动画
+- **[Three.js](https://threejs.org/)** - 3D效果
+- **[OGL](https://oframe.github.io/ogl/)** - 轻量级WebGL
+
+### 功能组件
+
+- **[Algolia](https://www.algolia.com/)** - 全文搜索
+- **[Twikoo](https://twikoo.js.org/)** - 评论系统
+- **[KaTeX](https://katex.org/)** - 数学公式渲染
+- **[react-syntax-highlighter](https://github.com/react-syntax-highlighter/react-syntax-highlighter)** - 代码高亮
+- **[Marked](https://marked.js.org/)** - Markdown解析
+- **[Zustand](https://zustand-demo.pmnd.rs/)** - 状态管理
+
+### 开发工具
+
+- **ESLint** - 代码检查
+- **PostCSS** - CSS处理
+
+---
+
+## 📦 项目结构
+
+```
+MDG_website_2/
+├── blog-system2/
+│   └── frontend/                    # 前端项目根目录
+│       ├── public/                  # 静态资源
+│       │   ├── data/               # 内容数据
+│       │   │   ├── posts/         # 博客文章
+│       │   │   │   ├── index.json # 文章索引
+│       │   │   │   ├── cover/     # 文章封面图
+│       │   │   │   ├── img/       # 文章配图
+│       │   │   │   └── *.md       # Markdown文章内容
+│       │   │   ├── notices/       # 公告通知
+│       │   │   │   ├── index.json # 公告索引
+│       │   │   │   └── *.md       # 公告内容
+│       │   │   └── resources/     # 学习资源
+│       │   ├── HomePageBackground/ # 首页背景图片
+│       │   └── favicon.ico        # 网站图标
+│       ├── src/
+│       │   ├── app/               # Next.js App Router页面
+│       │   │   ├── page.tsx       # 首页
+│       │   │   ├── layout.tsx     # 根布局
+│       │   │   ├── posts/         # 文章列表页
+│       │   │   ├── about/         # 关于页面
+│       │   │   ├── notices/       # 公告页面
+│       │   │   └── resources/     # 资源页面
+│       │   ├── components/        # React组件
+│       │   │   ├── Home/          # 首页特效组件
+│       │   │   ├── Search/        # 搜索组件
+│       │   │   ├── theme/         # 主题切换
+│       │   │   └── ...            # 其他组件
+│       │   └── lib/               # 工具库
+│       │       ├── static-data.ts # 静态数据读取
+│       │       └── utils.ts       # 通用工具函数
+│       ├── next.config.js         # Next.js配置
+│       ├── tailwind.config.mjs    # Tailwind配置
+│       ├── package.json           # 项目依赖
+│       └── tsconfig.json          # TypeScript配置
+└── README.md                      # 项目文档
 ```
 
-## 📦 环境要求
+---
 
-- Node.js 18.x+ 🟢
-- npm 9.x+ 📦
-- PostgreSQL 12+ 🐘 (推荐)
-- Redis 🧠 (可选缓存)
+## 🚀 快速开始
 
-## 🗂️ 项目结构
+### 环境要求
 
+- **Node.js** 18.x 或更高版本
+- **npm** / **yarn** / **pnpm** 包管理器
 
+### 安装依赖
+
+**1. 项目依赖**
 
 ```bash
-blog-system/
-├── frontend/          # Next.js 前端 ✨
-├── backend/           # Strapi v5 后端 🚀
-└── README.md          # 你现在看的文档 📚
+cd blog-system2/frontend
+npm install
+# 或
+yarn install
+# 或
+pnpm install
 ```
 
-------
-
-## 🖥️ 前端配置 (Next.js)
-
-
-
-### ⚡ 快速启动
+**2. EdgeOne CLI（用于本地预览和部署）**
 
 ```bash
-cd frontend
-npm install  # 或 yarn install
-npm run dev  # 🚦 开发模式启动！
+npm install -g edgeone
 ```
 
+验证安装：
 
+```bash
+edgeone -v    # 查看版本号
+edgeone -h    # 查看所有可用命令
+```
 
-### 🔑 环境变量 (.env.local)
+### 开发模式启动
+
+**方式一：EdgeOne Pages 本地预览**
+
+```bash
+edgeone pages dev
+```
+
+启动后访问 [http://localhost:8088](http://localhost:8088)
+
+> 支持热更新、Pages函数调试、环境变量同步等功能
+
+> **注意**：避免频繁退出启动 dev 服务（dev 服务内热更新不会增加启动次数）
+
+**方式二：Next.js 标准开发服务器**
+
+```bash
+npm run dev
+# 或
+yarn dev
+# 或
+pnpm dev
+```
+
+启动后访问 [http://localhost:3000](http://localhost:3000)
+
+---
+
+## ⚙️ 配置说明（正常情况下不动）
+
+### 环境变量 (.env.local)
+
+在 `blog-system2/frontend/` 目录下创建 `.env.local` 文件：
 
 ```env
-# 🌐 基础配置
 # ========================
-# 本地开发模式
-NEXT_PUBLIC_STRAPI_URL=https://你的strapi后台端口 🚪
-NEXT_PUBLIC_STRAPI_API_TOKEN=你的strapi后台token秘钥 🔑
-
-# 🚀 Strapi 后端配置
-# ========================
-NEXT_PUBLIC_STRAPI_API_URL=http://localhost:1337  # 开发环境 🛠️
-# NEXT_PUBLIC_STRAPI_API_URL=https://your-api-domain.com # 生产环境 ☁️
-NEXT_PUBLIC_STRAPI_API_TOKEN=your_strapi_api_token_here 🔐
-
-# 🔍 Algolia 搜索配置
+# 🔍 Algolia 搜索配置（可选）
 # ========================
 NEXT_PUBLIC_ALGOLIA_APP_ID=your_algolia_app_id
 NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY=your_algolia_search_api_key
 NEXT_PUBLIC_ALGOLIA_INDEX_NAME=blog_posts
-
-# 💬 Twikoo 评论系统
-# ========================
-NEXT_PUBLIC_TWIKOO_URL=https://twikoo.yourdomain.com
-TWIKOO_ENV_ID=your_vercel_environment_id
 ```
 
+> **注意**：
+>
+> - 所有以 `NEXT_PUBLIC_` 开头的变量会暴露给浏览器
+> - 如果不使用搜索功能，可以不配置这些变量
+> - 本项目为**纯前端静态站点**，无需配置Strapi后端
 
+### 图片域名配置
 
-### 📝 配置说明：
+编辑 [next.config.js](blog-system2/frontend/next.config.js) 中的 `images.domains`：
 
-1. **基础配置**：本地开发必需的核心参数
-2. **Strapi连接**：
-   - 开发环境用 `http://localhost:1337`
-   - 生产环境注释开发地址，启用生产地址 ☁️
-3. **Algolia搜索**：确保索引名称前后端一致 🔍
-4. **Twikoo评论**：
-   - `NEXT_PUBLIC_TWIKOO_URL` 对应Vercel部署地址
-   - `TWIKOO_ENV_ID` 是Vercel环境ID（可在设置中找到）
-
-
-
-### ⚠️ 注意事项：
-
-- 所有以 `NEXT_PUBLIC_` 开头的变量会自动暴露给浏览器 🌐
-- 敏感密钥（如API Token）不要包含 `NEXT_PUBLIC_` 前缀 🔒
-- 修改配置后需要重启开发服务器 ♻️ `(Ctrl+C 然后 npm run dev)`
-
-
-
-### ⚙️ 图片配置 (next.config.js 和 next.config.ts)
-
-```js
+```javascript
 images: {
-  domains: ["localhost", "你的CDN域名"],  // ✏️ 修改这里！
-  // ...其他配置
+  domains: [
+    "localhost",
+    "127.0.0.1",
+    "cdn.wuyilin18.top",      // CDN域名（根据实际情况修改）
+    "cdn.jsdelivr.net",
+    "api.wuyilin18.top",      // API域名（根据实际情况修改）
+  ],
 }
 ```
-
-
-
-### 🌐 Vercel 部署
-
-1. 推送代码到 GitHub 🐙
-2. 登录 [Vercel](https://vercel.com/) 导入项目
-3. 添加环境变量 🔑
-4. 点击部署！🚀
-   *(≧∇≦)ﾉ 通常3分钟完成部署~*
-
-------
-
-## 🚀 后端配置 (Strapi v5)
-
-
-
-### ⚡ 快速启动
-
-```bash
-cd backend
-npm install
-npm run develop  # 🎮 进入管理员模式！
-```
-
-
-
-### 🔑 环境变量 (.env)
-
-创建 `.env` 文件并配置以下变量：
-
-```env
-# ========================
-# 🛠️ 核心应用配置
-# ========================
-HOST=0.0.0.0
-PORT=1337
-APP_KEYS=你的应用密钥,逗号分隔 🔑
-API_TOKEN_SALT=你的API令牌盐值 🧂
-ADMIN_JWT_SECRET=管理员JWT密钥 👑
-JWT_SECRET=用户JWT密钥 👤
-
-# ========================
-# 🌐 公共访问配置 (必填！)
-# ========================
-PUBLIC_URL=https://你的strapi后台访问端口
-
-# ========================
-# 🗄️ 数据库配置
-# ========================
-DATABASE_CLIENT=postgres  # 推荐生产环境使用 🐘
-# DATABASE_CLIENT=sqlite  # 开发环境可用 💻
-DATABASE_FILENAME=.tmp/data.db  # SQLite专用
-# PostgreSQL配置示例 ↓
-# DATABASE_HOST=your-db-host
-# DATABASE_PORT=5432
-# DATABASE_NAME=strapi
-# DATABASE_USERNAME=strapi
-# DATABASE_PASSWORD=strongpassword 🔐
-
-# ========================
-# 🔍 Algolia 集成配置
-# ========================
-ALGOLIA_APP_ID=你的Algolia应用ID
-ALGOLIA_API_KEY=你的Algolia管理员API密钥 🔑
-ALGOLIA_INDEX_NAME=blog_posts  # 需与前端的索引名一致！
-
-# ========================
-# ⚙️ 其他配置
-# ========================
-NODE_ENV=production  # 生产环境设置为production
-# SMTP_MAIL=...  # 邮件服务配置（可选）
-# REDIS_URL=...  # Redis缓存（可选）
-```
-
-
-
-### 📝 配置说明：
-
-1. **密钥安全**：
-
-   - `APP_KEYS` 和 `JWT_SECRET` 使用强密码生成器创建 🔐
-   - 建议长度：64位十六进制字符（可用 `openssl rand -hex 32` 生成）
-
-2. **数据库选择**：
-
-   - **开发**：SQLite（开箱即用）💻
-   - **生产**：PostgreSQL（推荐）🐘
-
-   ```env
-   # PostgreSQL生产配置示例
-   DATABASE_CLIENT=postgres
-   DATABASE_HOST=your-db-host.com
-   DATABASE_PORT=5432
-   DATABASE_NAME=strapi_prod
-   DATABASE_USERNAME=prod_user
-   DATABASE_PASSWORD=strong!Password123 🔐
-   ```
-
-3. **Algolia注意**：
-
-   - `ALGOLIA_API_KEY` 需要使用 **Admin API Key**（非Search-Only Key）⭐
-   - 索引名称需前后端完全一致（包括大小写）🔍
-
-4. **关键配置**：
-
-   - `PUBLIC_URL` 必须设置为最终访问地址（否则图片链接会出错）⚠️
-   - `NODE_ENV` 生产环境务必设为 `production`（提升性能+安全）🚀
-
-
-
-### ⚠️ 安全警告：
-
-1. **绝不提交**.env文件到版本库！🙅♂️
-2. 生产环境禁用SQLite（使用PostgreSQL）🚫
-3. 数据库密码包含：大小写字母+数字+特殊字符（长度>12）💪
-4. 定期轮换密钥（建议每90天）⏳
-
-
-
-### 🔍 Algolia 插件配置
-
-**让文章搜索飞起来~ 🔍✨**  
-
-1. 安装官方插件：  
-```bash
-npm install strapi-plugin-algolia  # 🚀 安装搜索神器！
-```
-
-在 `backend/config/plugins.ts` 中添加：
-
-```ts
-export default ({ env }) => ({
-    
-  // 其他插件配置...
-    
-  // ========================
-  // 🔍 Algolia 搜索插件配置
-  // ========================
-  "strapi-algolia": {
-    enabled: true,
-    config: {
-      apiKey: env("ALGOLIA_API_KEY"),        // 使用.env中的密钥
-      applicationId: env("ALGOLIA_APP_ID"),  // Algolia应用ID
-      indexPrefix: process.env.ALGOLIA_INDEX_PREFIX || "strapi", // 索引前缀（可选）
-      contentTypes: [
-        {
-          name: "api::post.post",
-          index: "development_blog_posts", // 📌 必须与前端的索引名一致！
-          transform: (data) => {
-            const baseUrl = process.env.PUBLIC_URL;
-            let coverImageUrl = "";
-            if (data.CoverImage?.url) {
-              coverImageUrl = data.CoverImage.url.startsWith("http")
-                ? data.CoverImage.url
-                : `${baseUrl}${data.CoverImage.url}`;
-            }
-
-            return {
-              objectID: data.id.toString(),
-              title: data.Title || "",
-              slug: data.Slug || "",
-              summary: data.Summary || "",
-              content: parseRichTextForAlgolia(data.Content), // Use the local parser
-              coverImage: coverImageUrl,
-              categories: data.categories?.map((cat) => cat.name) || [],
-              tags: data.tags?.map((tag) => tag.name) || [],
-            };
-          },
-          populate: {
-            Content: true,
-            CoverImage: true,
-            categories: true,
-            tags: true,
-          },
-        },
-      ],
-    },
-  },
-});
-```
-
-### ⚠️ 关键注意事项：
-
-1. **索引名称一致性**：
-   `index` 值必须与前端的 `NEXT_PUBLIC_ALGOLIA_INDEX_NAME` 完全相同 🔗
-
-   ```ts
-   index: "blog_posts"  // ✅ 前后端统一
-   ```
-
-2. **调试建议**：
-   在Strapi后台观察插件日志 → 确保文章发布时自动同步到Algolia 📤
-
-------
-
-
-
-## 💬 Twikoo 评论系统
-
-### 🌐 Vercel 部署
-
-1. 使用 [Twikoo模板](https://github.com/twikoojs/twikoo)
-2. 设置环境变量：
-
-```env
-MONGODB_URI=mongodb+srv://<账号>:<密码>@集群地址/twikoo
-TWIKOO_ADMIN_PASS=你的管理密码 🔑
-```
-
-
-
-### 🧩 前端集成示例
-
-在评论组件`TwikooComments.tsx`中修改：
-
-```tsx
-const finalEnvId = "https://你的Twikoo地址";  // ✏️ 修改这里！
-window.twikoo.init({
-  envId: finalEnvId,
-  el: "#twikoo-comments-container",
-  path: pathname
-});
-```
-
-------
-
-
-
-## ☁️ 部署到云服务器
-
-### 🛠️ 准备阶段（Ubuntu 20.04+推荐）
-
-```bash
-# 1️⃣ 安装基础依赖
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y git nginx
-
-# 2️⃣ 安装Node.js（使用nvm）
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-source ~/.bashrc
-nvm install 20  # 🟢 推荐Node.js 20
-nvm use 20
-
-# 3️⃣ 安装PostgreSQL
-sudo apt install -y postgresql postgresql-contrib
-sudo -u postgres psql -c "CREATE DATABASE strapi_prod;"
-sudo -u postgres psql -c "CREATE USER strapi_user WITH PASSWORD '强密码';"
-sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE strapi_prod TO strapi_user;"
-
-# 4️⃣ 防火墙配置
-sudo ufw allow 22     # SSH
-sudo ufw allow 80     # HTTP
-sudo ufw allow 443    # HTTPS
-sudo ufw enable       # 🛡️ 激活防火墙
-```
-
-
-
-### 🚀 启动Strapi服务
-
-```bash
-# 1️⃣ 安装PM2进程管理器
-npm install -g pm2  # 📦 全局安装
-
-# 2️⃣ 启动项目（在backend目录）
-pm2 start npm --name "strapi-prod" -- run start  # 🚀 生产模式启动
-
-# 3️⃣ 保存进程列表
-pm2 save
-
-# 4️⃣ 设置开机自启
-pm2 startup  # 👑 根据提示执行生成的命令
-```
-
-
-
-### 🔄 常用PM2命令
-
-```bash
-pm2 logs strapi-prod    # 📜 查看实时日志
-pm2 restart strapi-prod # 🔁 重启服务
-pm2 stop strapi-prod    # ⏹️ 停止服务
-```
-
-
-
-### 🌐 Nginx反向代理配置
-
-创建 `/etc/nginx/sites-available/strapi`：
-
-```nginx
-server {
-    listen 80;
-    server_name api.yourdomain.com;  # ✏️ 改成你的域名
-    
-    location / {
-        proxy_pass http://localhost:1337;  # 🚪 转发到Strapi
-        proxy_http_version 1.1;
-        proxy_set_header X-Forwarded-Host $host;
-        proxy_set_header X-Forwarded-Server $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header Host $http_host;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "Upgrade";
-        proxy_pass_request_headers on;
-    }
-
-    # 静态文件缓存优化（可选）
-    location /uploads {
-        alias /path/to/backend/public/uploads;
-        expires 30d;
-        add_header Cache-Control "public";
-    }
-}
-```
-
-激活配置：
-
-```bash
-sudo ln -s /etc/nginx/sites-available/strapi /etc/nginx/sites-enabled/
-sudo nginx -t  # ✅ 测试配置
-sudo systemctl restart nginx  # 🔄 重启Nginx
-```
-
-
-
-### 📌 部署后检查清单
-
-1. 访问 `http://api.yourdomain.com/admin` 是否能打开后台 👀
-
-2. 检查PM2日志是否有错误 `pm2 logs strapi-prod` 📋
-
-3. 测试Algolia同步：发布新文章 → 查看Algolia控制台 🔍
-
-4. 配置HTTPS（使用Certbot免费证书）🔒
-
-   ```bash
-   sudo apt install certbot python3-certbot-nginx
-   sudo certbot --nginx -d api.yourdomain.com
-   ```
-
-------
-
-
-
-## 附录：实用工具函数
-
-### 🧹 HTML标签清理函数
-
-```ts
-// 添加到 plugins.ts 文件顶部
-const stripHtmlTags = (html: string) => {
-  return html
-    .replace(/<[^>]*>/g, ' ')   // 移除HTML标签
-    .replace(/\s+/g, ' ')       // 合并多个空格
-    .trim();                    // 去掉首尾空格
-};
-```
-
-> **✨ 部署完成！现在你的博客已经准备好服务全世界啦~ 🌍**
-> **遇到问题？记得查看日志 `pm2 logs` 哦 (๑•̀ㅂ•́)و✧**
-
-
-
-## 🌟 内容更新流程  
-
-### ✍️ 添加新博客文章  
-**超简单四步发布法~** (๑˃ᴗ˂)ﻭ  
-1. **登录** Strapi管理后台 👉 `https://你的域名/admin`  
-2. 进入 **Content Manager** → **Posts** 📚  
-3. 点击 **+ Create new entry** 开始创作 ✨  
-4. 编辑完成后 → **Save** → **Publish** 🚀  
-5. **自动同步**：新文章将实时同步到Algolia搜索库 🔄  
-
-> 💡 小技巧：  
-> - 使用Markdown语法写作更高效 📝  
-> - 添加分类/标签提升可发现性 🏷️  
-> - 设置特色图片吸引读者 👀  
 
 ---
 
+## 📝 内容管理
 
+本项目采用**本地文件系统**管理内容，无需数据库或后端服务。
 
-### ⚙️ 更新网站配置  
+### 添加新文章
 
-**前端/后端分开管理** 🔧  
+1. **编写Markdown文件**
 
-#### 🖥️ 前端更新流程  
-1. 修改前端代码（主题/样式/功能）💅  
-2. 推送更新到GitHub仓库 🐙  
-3. **Vercel自动触发**：  
-   - 重构建Next.js应用 ♻️  
-   - 全球CDN即时更新 🌍  
+   在 `public/data/posts/` 目录下创建 `.md` 文件，例如 `my-new-post.md`：
 
-#### 📡 后端更新缓存  
-**当修改Strapi内容时**：  
-- 文章封面更新 🖼️  
-- 分类结构调整 🧩  
-- 全局配置变更 ⚙️  
+   ```markdown
+   # 文章正文开始
 
-**需清除前端缓存**：  
+   这里使用标准Markdown语法编写内容...
 
-```diff
-# 方法一：手动触发重部署
-+ 进入Vercel控制台 → 点击『Redeploy』按钮 🔁
+   ## 支持的功能
 
-# 方法二：启用ISR（推荐✨）
-+ 在Next.js页面添加revalidate参数：
-  export const revalidate = 60  // 每60秒刷新缓存 ⏱️
+   - **数学公式**：$E=mc^2$
+   - **代码高亮**：
+     ```python
+     print("Hello, World!")
+       ```
+   - **图片插入**：![描述](./img/1.png)
+   ```
+2. **添加封面图片**
+
+   将封面图片放入 `public/data/posts/cover/` 目录
+3. **更新文章索引**
+
+   编辑 [public/data/posts/index.json](blog-system2/frontend/public/data/posts/index.json)，在 `posts` 数组中添加新条目：
+
+   ```json
+   {
+     "slug": "my-new-post",
+     "title": "我的新文章标题",
+     "summary": "文章摘要描述",
+     "publishDate": "2026-01-01",
+     "coverImage": "/data/posts/cover/my-cover.png"
+   }
+   ```
+4. **添加文章配图**（可选）
+
+   在 `public/data/posts/img/` 下创建对应目录存放图片
+
+### 添加公告
+
+1. 编写Markdown文件到 `public/data/notices/`
+2. 更新 [public/data/notices/index.json](blog-system2/frontend/public/data/notices/index.json)
+
+### 添加学习资源
+
+更新 [public/data/resources/index.json](blog-system2/frontend/public/data/resources/index.json)
+
+---
+
+## 🏗️ 构建与部署
+
+### 构建生产版本
+
+```bash
+# 标准构建（生成静态文件）
+npm run build
+
+# GitHub Pages专用构建
+npm run build:github
 ```
 
+构建产物输出到 `out/` 目录
 
+### 部署方式
 
-### 🚀 高级更新技巧  
+#### 方式一：EdgeOne Pages
 
-#### 增量静态再生 (ISR) 配置示例  
-```tsx
-// 📂 路径: frontend/pages/posts/[slug].tsx
-export async function getStaticProps({ params }) {
-  const post = await getPostBySlug(params.slug);
-  
-  return {
-    props: { post },
-    revalidate: 120,  // ⏰ 每2分钟自动刷新页面
-  };
-}
+使用腾讯云 EdgeOne Pages 部署，支持本地预览和一键部署。
+
+**准备工作**
+
+1. 使用 Gmail 邮箱注册登录 [腾讯云控制台](https://console.cloud.tencent.com/)
+2. 在控制台开通 [Pages 服务](https://console.cloud.tencent.com/tcb/pages)
+3. 创建新的 Pages 项目
+
+> **提示**：如未安装 EdgeOne CLI，请参考上方「安装依赖」部分的安装说明
+
+**登录 EdgeOne（首次使用需要登录）**
+
+```bash
+edgeone login
 ```
-**效果**：  
-- 用户访问时自动检查更新 🔍  
-- 内容变更后2分钟内全球生效 🌐  
-- 大幅降低API请求压力 📉  
 
-#### 手动清除缓存API  
-```ts
-// 在Strapi后端添加清除缓存端点
-router.post('/purge-cache', async (ctx) => {
-  await fetch('https://api.vercel.com/.../cache', {
-    method: 'DELETE',
-    headers: { Authorization: `Bearer ${process.env.VERCEL_TOKEN}` }
-  });
-  ctx.send({ success: true });
-});
+- 选择 `Global`（国际站）或 `China`（中国站），建议选择 Global
+- 在弹出的浏览器窗口完成登录
+
+查看当前账号信息：
+
+```bash
+edgeone whoami
 ```
-**使用场景**：  
-- 紧急内容修复 🚑  
-- 大规模数据迁移 🚚  
-- 主题重大更新 🎨  
 
-> **✨ 小贴士**：  
-> 日常更新使用ISR足够高效，  
-> 重大变更时配合手动清除更稳妥！  
-> `( •̀ ω •́ )✧ 保持博客始终新鲜~`
+**初始化项目（首次使用）**
 
-------
+```bash
+cd blog-system2/frontend
+edgeone pages init
+```
 
+初始化后会生成 EdgeOne Pages 需要的基础环境配置。
 
+**🚀 构建并部署到生产环境**
 
-## 🔒 安全指南
+```bash
+cd blog-system2/frontend
 
-### 🔑 密钥管理最佳实践
+# 步骤1：构建项目
+npm run build
 
-- 使用 `密码生成器` 创建强密钥 (建议32位+) 🔐
-- 开发/生产环境使用 **不同密钥** 🔄
-- 定期轮换密钥 ⏳
-- 永远不要提交 `.env` 文件！ 🙅♂️
+# 步骤2：部署到 EdgeOne Pages（自动构建+部署）
+edgeone pages deploy ./out -n mdg-blog
+```
 
-### 🛡️ 加固措施
+参数说明：
 
-- 禁用Strapi公共注册 🚫
-- 数据库启用SSL连接 🔒
-- 配置云服务器防火墙 🔥
-- 备份！备份！备份！ 💾 (重要的事情说三遍)
+- `./out`：构建产物目录（必填）
+- `-n mdg-blog`：项目名称（必填，不存在则自动创建）
+- `-e production`：部署到生产环境（默认）
+- `-e preview`：部署到预览环境
 
-------
+**其他命令（比较少用）**
 
+```bash
+# 部署到预览环境
+edgeone pages deploy ./out -n mdg-blog -e preview
 
+# 仅部署（不重新构建，需确保 out 目录存在）
+edgeone pages deploy ./out -n mdg-blog
 
-## 🧰 故障排除
+# 切换账号
+edgeone switch
+```
 
-| 问题现象         | 解决方案                              |
-| :--------------- | :------------------------------------ |
-| 🔍 Algolia无结果  | 检查Strapi插件日志 → 确认内容发布状态 |
-| 💬 评论加载失败   | 验证MongoDB连接 → 检查Twikoo服务状态  |
-| 🚨 Strapi无法访问 | `pm2 logs strapi` → 检查防火墙规则    |
-| 🖼️ 图片不显示     | 检查CDN配置 → 确认next.config.js域名  |
+#### 方式二：GitHub Pages
 
-------
+1. 推送代码到GitHub仓库
+2. 设置 GitHub Pages：
+   - 进入仓库 Settings → Pages
+   - Source 选择 `Deploy from a branch`
+   - Branch 选择 `main`，目录选择 `/ (root)`
+3. 使用专用构建命令：
 
+```bash
+npm run build:github
+```
 
+#### 方式三：Vercel
 
-## ❤️ 支持与贡献
+1. 推送代码到GitHub
+2. 导入项目到 [Vercel](https://vercel.com/)
+3. 自动部署，无需额外配置
 
-遇到问题？欢迎提交Issue：
-[GitHub Issues](https://github.com/wuyilin18/BlogWebsite-SiliconNebula/issues)
-*(ง •_•)ง 作者会尽快回复！*
+#### 方式四：任意静态托管
 
+将 `out/` 目录上传到任意支持静态文件的托管服务（Netlify、Cloudflare Pages等）
 
+---
 
-## 📜 许可证
+## 🎨 主要功能模块
 
-MIT License - 自由使用与修改！ 🆓
+### 🏠 首页
 
-------
+- 视差滚动背景效果
+- 3D卡片交互展示
+- Orbit轨道动画
+- 最新文章展示
+- 最新公告预览
 
-**✨ Happy Coding! 祝你的博客闪闪发光~ ✨**
-**—— 来自十八的技术小窝 (｡♥‿♥｡) ——**
+### 📚 文章系统
+
+- 文章列表（分页）
+- 文章详情页（Markdown渲染）
+- 目录导航（TOC）
+- 相关文章推荐
+- 阅读时间估算
+- 作者信息展示
+
+### 🔍 搜索功能
+
+- Algolia全文搜索
+- 实时搜索建议
+- 搜索结果高亮
+
+### 📢 公告系统
+
+- 公告列表
+- 公告详情
+
+### 👥 关于页面
+
+- 团队介绍
+- 日程安排日历
+
+### 🌓 主题切换
+
+- 明亮/暗色模式
+- 系统主题跟随
+- 平滑过渡动画
+
+---
+
+## 🙏 致谢
+
+- 感谢原项目 [BlogWebsite-Eighteen](https://github.com/wuyilin18/BlogWebsite-Eighteen) 提供的基础架构
+- 感谢所有开源社区提供的优秀组件和工具

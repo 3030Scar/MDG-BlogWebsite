@@ -3,7 +3,20 @@
 import React from "react";
 import Link from "next/link";
 import PostImage from "@/components/PostImage";
-import { StrapiMediaObject } from "@/lib/strapi";
+// 媒体对象类型（原 StrapiMediaObject）
+interface MediaObject {
+  url?: string;
+  data?: {
+    attributes?: {
+      url?: string;
+      alternativeText?: string;
+    };
+  };
+  attributes?: {
+    url?: string;
+    alternativeText?: string;
+  };
+}
 
 // 定义文章类型
 interface Post {
@@ -12,7 +25,7 @@ interface Post {
   Summary?: string;
   slug?: string;
   PublishDate?: string;
-  CoverImage?: StrapiMediaObject | null;
+  CoverImage?: MediaObject | null;
 }
 
 interface RelatedPostsProps {
@@ -30,7 +43,7 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({
 
   // 处理封面图片URL - 修复Strapi v5数据结构
   const getCoverImageUrl = (
-    coverImage: StrapiMediaObject | string | null
+    coverImage: MediaObject | string | null
   ): string => {
     const defaultImage = "https://cdn.wuyilin18.top/img/7245943.png";
 

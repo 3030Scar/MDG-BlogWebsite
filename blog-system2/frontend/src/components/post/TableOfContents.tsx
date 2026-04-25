@@ -65,7 +65,6 @@ export const TableOfContents = () => {
         if (
           element.textContent?.includes("留言板") ||
           element.closest('[id*="comment"]') ||
-          element.closest(".twikoo") ||
           element.closest('[class*="comment"]')
         ) return null;
 
